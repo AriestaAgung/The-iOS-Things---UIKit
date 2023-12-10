@@ -1,5 +1,5 @@
 //
-//  RootTabViewController.swift
+//  HomeViewController.swift
 //  The iOS Things
 //
 //  Created by Ariesta APP on 10/12/23.
@@ -7,22 +7,16 @@
 
 import UIKit
 
-class RootTabViewController: UITabBarController {
-    
-    
+class HomeViewController: UIViewController {
+
+    @IBOutlet weak var hello: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Hello"
+        self.title = "Halo"
+        // Do any additional setup after loading the view.
     }
-    override func viewWillAppear(_ animated: Bool) {
-    
-        print(self.viewControllers?.first?.title)
-    }
-    
-    
 
-    
 
     /*
     // MARK: - Navigation

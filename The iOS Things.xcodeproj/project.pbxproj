@@ -16,6 +16,9 @@
 		EB44685B2B257C03005FC15D /* The_iOS_ThingsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB44685A2B257C03005FC15D /* The_iOS_ThingsUITests.swift */; };
 		EB44685D2B257C03005FC15D /* The_iOS_ThingsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB44685C2B257C03005FC15D /* The_iOS_ThingsUITestsLaunchTests.swift */; };
 		EB4468742B257F23005FC15D /* RootTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4468722B257F23005FC15D /* RootTabViewController.swift */; };
+		EB4468782B258440005FC15D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4468762B258440005FC15D /* HomeViewController.swift */; };
+		EB4468792B258440005FC15D /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB4468772B258440005FC15D /* HomeViewController.xib */; };
+		EB44687B2B258767005FC15D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB44687A2B258767005FC15D /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		EB44685A2B257C03005FC15D /* The_iOS_ThingsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_iOS_ThingsUITests.swift; sourceTree = "<group>"; };
 		EB44685C2B257C03005FC15D /* The_iOS_ThingsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_iOS_ThingsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EB4468722B257F23005FC15D /* RootTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabViewController.swift; sourceTree = "<group>"; };
+		EB4468762B258440005FC15D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EB4468772B258440005FC15D /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		EB44687A2B258767005FC15D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,7 @@
 			children = (
 				EB4468422B257C03005FC15D /* Assets.xcassets */,
 				EB44686B2B257E2B005FC15D /* CustomViews */,
+				EB44687A2B258767005FC15D /* Utils.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -163,6 +170,8 @@
 			isa = PBXGroup;
 			children = (
 				EB44683D2B257C02005FC15D /* ViewController.swift */,
+				EB4468762B258440005FC15D /* HomeViewController.swift */,
+				EB4468772B258440005FC15D /* HomeViewController.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -289,6 +298,7 @@
 			files = (
 				EB4468462B257C03005FC15D /* LaunchScreen.storyboard in Resources */,
 				EB4468432B257C03005FC15D /* Assets.xcassets in Resources */,
+				EB4468792B258440005FC15D /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,10 +323,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB4468782B258440005FC15D /* HomeViewController.swift in Sources */,
 				EB4468742B257F23005FC15D /* RootTabViewController.swift in Sources */,
 				EB44683E2B257C02005FC15D /* ViewController.swift in Sources */,
 				EB44683A2B257C02005FC15D /* AppDelegate.swift in Sources */,
 				EB44683C2B257C02005FC15D /* SceneDelegate.swift in Sources */,
+				EB44687B2B258767005FC15D /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,7 +504,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = R2D4D7YLB2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "The iOS Things/Info.plist";
+				INFOPLIST_FILE = "The iOS Things/App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -523,7 +535,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = R2D4D7YLB2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "The iOS Things/Info.plist";
+				INFOPLIST_FILE = "The iOS Things/App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
