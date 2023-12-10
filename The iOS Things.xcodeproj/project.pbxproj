@@ -10,12 +10,12 @@
 		EB44683A2B257C02005FC15D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4468392B257C02005FC15D /* AppDelegate.swift */; };
 		EB44683C2B257C02005FC15D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB44683B2B257C02005FC15D /* SceneDelegate.swift */; };
 		EB44683E2B257C02005FC15D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB44683D2B257C02005FC15D /* ViewController.swift */; };
-		EB4468412B257C02005FC15D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB44683F2B257C02005FC15D /* Main.storyboard */; };
 		EB4468432B257C03005FC15D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB4468422B257C03005FC15D /* Assets.xcassets */; };
 		EB4468462B257C03005FC15D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4468442B257C03005FC15D /* LaunchScreen.storyboard */; };
 		EB4468512B257C03005FC15D /* The_iOS_ThingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4468502B257C03005FC15D /* The_iOS_ThingsTests.swift */; };
 		EB44685B2B257C03005FC15D /* The_iOS_ThingsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB44685A2B257C03005FC15D /* The_iOS_ThingsUITests.swift */; };
 		EB44685D2B257C03005FC15D /* The_iOS_ThingsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB44685C2B257C03005FC15D /* The_iOS_ThingsUITestsLaunchTests.swift */; };
+		EB4468742B257F23005FC15D /* RootTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4468722B257F23005FC15D /* RootTabViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +40,6 @@
 		EB4468392B257C02005FC15D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB44683B2B257C02005FC15D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EB44683D2B257C02005FC15D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EB4468402B257C02005FC15D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EB4468422B257C03005FC15D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB4468452B257C03005FC15D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB4468472B257C03005FC15D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		EB4468562B257C03005FC15D /* The iOS ThingsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "The iOS ThingsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB44685A2B257C03005FC15D /* The_iOS_ThingsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_iOS_ThingsUITests.swift; sourceTree = "<group>"; };
 		EB44685C2B257C03005FC15D /* The_iOS_ThingsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_iOS_ThingsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		EB4468722B257F23005FC15D /* RootTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +99,9 @@
 		EB4468382B257C02005FC15D /* The iOS Things */ = {
 			isa = PBXGroup;
 			children = (
-				EB4468392B257C02005FC15D /* AppDelegate.swift */,
-				EB44683B2B257C02005FC15D /* SceneDelegate.swift */,
-				EB44683D2B257C02005FC15D /* ViewController.swift */,
-				EB44683F2B257C02005FC15D /* Main.storyboard */,
-				EB4468422B257C03005FC15D /* Assets.xcassets */,
-				EB4468442B257C03005FC15D /* LaunchScreen.storyboard */,
-				EB4468472B257C03005FC15D /* Info.plist */,
+				EB4468692B257E10005FC15D /* App */,
+				EB44686A2B257E1F005FC15D /* Common */,
+				EB44686C2B257E43005FC15D /* Features */,
 			);
 			path = "The iOS Things";
 			sourceTree = "<group>";
@@ -125,6 +121,66 @@
 				EB44685C2B257C03005FC15D /* The_iOS_ThingsUITestsLaunchTests.swift */,
 			);
 			path = "The iOS ThingsUITests";
+			sourceTree = "<group>";
+		};
+		EB4468692B257E10005FC15D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				EB4468392B257C02005FC15D /* AppDelegate.swift */,
+				EB4468472B257C03005FC15D /* Info.plist */,
+				EB4468442B257C03005FC15D /* LaunchScreen.storyboard */,
+				EB44683B2B257C02005FC15D /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		EB44686A2B257E1F005FC15D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				EB4468422B257C03005FC15D /* Assets.xcassets */,
+				EB44686B2B257E2B005FC15D /* CustomViews */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		EB44686B2B257E2B005FC15D /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		EB44686C2B257E43005FC15D /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				EB44686D2B257E53005FC15D /* Home */,
+				EB44686E2B257EAB005FC15D /* RootTabViewController */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		EB44686D2B257E53005FC15D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EB44683D2B257C02005FC15D /* ViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EB44686E2B257EAB005FC15D /* RootTabViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EB4468712B257EF2005FC15D /* Views */,
+			);
+			path = RootTabViewController;
+			sourceTree = "<group>";
+		};
+		EB4468712B257EF2005FC15D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EB4468722B257F23005FC15D /* RootTabViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +289,6 @@
 			files = (
 				EB4468462B257C03005FC15D /* LaunchScreen.storyboard in Resources */,
 				EB4468432B257C03005FC15D /* Assets.xcassets in Resources */,
-				EB4468412B257C02005FC15D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB4468742B257F23005FC15D /* RootTabViewController.swift in Sources */,
 				EB44683E2B257C02005FC15D /* ViewController.swift in Sources */,
 				EB44683A2B257C02005FC15D /* AppDelegate.swift in Sources */,
 				EB44683C2B257C02005FC15D /* SceneDelegate.swift in Sources */,
@@ -297,14 +353,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		EB44683F2B257C02005FC15D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EB4468402B257C02005FC15D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EB4468442B257C03005FC15D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -447,9 +495,9 @@
 				INFOPLIST_FILE = "The iOS Things/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -457,6 +505,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dcd.The-iOS-Things";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -475,9 +526,9 @@
 				INFOPLIST_FILE = "The iOS Things/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -485,6 +536,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dcd.The-iOS-Things";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
