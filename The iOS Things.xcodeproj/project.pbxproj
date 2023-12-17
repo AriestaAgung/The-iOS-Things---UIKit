@@ -19,6 +19,9 @@
 		EB4468792B258440005FC15D /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB4468772B258440005FC15D /* HomeViewController.xib */; };
 		EB44687B2B258767005FC15D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB44687A2B258767005FC15D /* Utils.swift */; };
 		EBADC7DA2B25915E003185C5 /* BulletIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADC7D92B25915E003185C5 /* BulletIndicatorView.swift */; };
+		EBBA51FC2B2F58C600EA069A /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA51FB2B2F58C600EA069A /* HomePresenter.swift */; };
+		EBBA51FE2B2F5CE100EA069A /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA51FD2B2F5CE100EA069A /* HomeModel.swift */; };
+		EBBA52012B2F5D3900EA069A /* NewsDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA52002B2F5D3900EA069A /* NewsDummy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		EB4468772B258440005FC15D /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		EB44687A2B258767005FC15D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		EBADC7D92B25915E003185C5 /* BulletIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletIndicatorView.swift; sourceTree = "<group>"; };
+		EBBA51FB2B2F58C600EA069A /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		EBBA51FD2B2F5CE100EA069A /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		EBBA52002B2F5D3900EA069A /* NewsDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDummy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +149,7 @@
 		EB44686A2B257E1F005FC15D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EBBA51FF2B2F5D2700EA069A /* Dummies */,
 				EB4468422B257C03005FC15D /* Assets.xcassets */,
 				EB44686B2B257E2B005FC15D /* CustomViews */,
 				EB44687A2B258767005FC15D /* Utils.swift */,
@@ -172,6 +179,8 @@
 			children = (
 				EB4468762B258440005FC15D /* HomeViewController.swift */,
 				EB4468772B258440005FC15D /* HomeViewController.xib */,
+				EBBA51FB2B2F58C600EA069A /* HomePresenter.swift */,
+				EBBA51FD2B2F5CE100EA069A /* HomeModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -198,6 +207,14 @@
 				EBADC7D92B25915E003185C5 /* BulletIndicatorView.swift */,
 			);
 			path = BulletIndicatorView;
+			sourceTree = "<group>";
+		};
+		EBBA51FF2B2F5D2700EA069A /* Dummies */ = {
+			isa = PBXGroup;
+			children = (
+				EBBA52002B2F5D3900EA069A /* NewsDummy.swift */,
+			);
+			path = Dummies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,9 +348,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBBA51FC2B2F58C600EA069A /* HomePresenter.swift in Sources */,
+				EBBA52012B2F5D3900EA069A /* NewsDummy.swift in Sources */,
 				EBADC7DA2B25915E003185C5 /* BulletIndicatorView.swift in Sources */,
 				EB4468782B258440005FC15D /* HomeViewController.swift in Sources */,
 				EB4468742B257F23005FC15D /* RootTabViewController.swift in Sources */,
+				EBBA51FE2B2F5CE100EA069A /* HomeModel.swift in Sources */,
 				EB44683A2B257C02005FC15D /* AppDelegate.swift in Sources */,
 				EB44683C2B257C02005FC15D /* SceneDelegate.swift in Sources */,
 				EB44687B2B258767005FC15D /* Utils.swift in Sources */,

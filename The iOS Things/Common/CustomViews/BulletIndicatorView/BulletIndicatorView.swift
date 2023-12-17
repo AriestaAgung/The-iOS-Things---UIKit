@@ -10,8 +10,9 @@ import UIKit
 class BulletIndicatorView: UIView {
  
     private var totalCapsule: Int = 0
-    private var capsules: [CapsuleView] = []
     private var capsuleSize: CGSize = CGSize(width: 8, height: 8)
+    var capsules: [CapsuleView] = []
+    var currentActiveCapsule = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,9 +32,10 @@ class BulletIndicatorView: UIView {
     
     private func commonInit() {
         let baseView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: capsuleSize.width * CGFloat(totalCapsule), height: capsuleSize.height)))
-        for _ in 1...totalCapsule {
+        for index in 1...totalCapsule {
             let capsule = CapsuleView(frame: CGRect(origin: .zero, size: capsuleSize))
             capsule.frame.size = capsuleSize
+            capsule.tag = index-1
             capsules.append(capsule)
         }
         let capsuleStack = UIStackView(arrangedSubviews: capsules)
@@ -58,10 +60,12 @@ class BulletIndicatorView: UIView {
     }
     
     func setActiveCapsule(index: Int) {
+        currentActiveCapsule = -1
         for capsuleIndex in capsules.indices where capsuleIndex != index{
             capsules[capsuleIndex].isActive = false
         }
         capsules[index].isActive = true
+        currentActiveCapsule = index
     }
 }
 
