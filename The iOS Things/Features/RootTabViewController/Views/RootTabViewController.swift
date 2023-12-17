@@ -9,16 +9,11 @@ import UIKit
 
 class RootTabViewController: UITabBarController {
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Hello"
     }
-    override func viewWillAppear(_ animated: Bool) {
     
-        print(self.viewControllers?.first?.title)
-    }
     
     
 

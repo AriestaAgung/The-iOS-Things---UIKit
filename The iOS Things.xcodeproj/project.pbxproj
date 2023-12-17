@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		EB44683A2B257C02005FC15D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4468392B257C02005FC15D /* AppDelegate.swift */; };
 		EB44683C2B257C02005FC15D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB44683B2B257C02005FC15D /* SceneDelegate.swift */; };
-		EB44683E2B257C02005FC15D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB44683D2B257C02005FC15D /* ViewController.swift */; };
 		EB4468432B257C03005FC15D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB4468422B257C03005FC15D /* Assets.xcassets */; };
 		EB4468462B257C03005FC15D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4468442B257C03005FC15D /* LaunchScreen.storyboard */; };
 		EB4468512B257C03005FC15D /* The_iOS_ThingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4468502B257C03005FC15D /* The_iOS_ThingsTests.swift */; };
@@ -19,6 +18,7 @@
 		EB4468782B258440005FC15D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4468762B258440005FC15D /* HomeViewController.swift */; };
 		EB4468792B258440005FC15D /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB4468772B258440005FC15D /* HomeViewController.xib */; };
 		EB44687B2B258767005FC15D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB44687A2B258767005FC15D /* Utils.swift */; };
+		EBADC7DA2B25915E003185C5 /* BulletIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADC7D92B25915E003185C5 /* BulletIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,6 @@
 		EB4468362B257C02005FC15D /* The iOS Things.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The iOS Things.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB4468392B257C02005FC15D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB44683B2B257C02005FC15D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EB44683D2B257C02005FC15D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EB4468422B257C03005FC15D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB4468452B257C03005FC15D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB4468472B257C03005FC15D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +54,7 @@
 		EB4468762B258440005FC15D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EB4468772B258440005FC15D /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		EB44687A2B258767005FC15D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		EBADC7D92B25915E003185C5 /* BulletIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +153,7 @@
 		EB44686B2B257E2B005FC15D /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				EBADC7D82B259143003185C5 /* BulletIndicatorView */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -169,7 +170,6 @@
 		EB44686D2B257E53005FC15D /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				EB44683D2B257C02005FC15D /* ViewController.swift */,
 				EB4468762B258440005FC15D /* HomeViewController.swift */,
 				EB4468772B258440005FC15D /* HomeViewController.xib */,
 			);
@@ -190,6 +190,14 @@
 				EB4468722B257F23005FC15D /* RootTabViewController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		EBADC7D82B259143003185C5 /* BulletIndicatorView */ = {
+			isa = PBXGroup;
+			children = (
+				EBADC7D92B25915E003185C5 /* BulletIndicatorView.swift */,
+			);
+			path = BulletIndicatorView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,9 +331,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBADC7DA2B25915E003185C5 /* BulletIndicatorView.swift in Sources */,
 				EB4468782B258440005FC15D /* HomeViewController.swift in Sources */,
 				EB4468742B257F23005FC15D /* RootTabViewController.swift in Sources */,
-				EB44683E2B257C02005FC15D /* ViewController.swift in Sources */,
 				EB44683A2B257C02005FC15D /* AppDelegate.swift in Sources */,
 				EB44683C2B257C02005FC15D /* SceneDelegate.swift in Sources */,
 				EB44687B2B258767005FC15D /* Utils.swift in Sources */,

@@ -11,7 +11,7 @@ import UIKit
 struct Utils {
     static func setupRootTabBarVC(tabBar: UITabBarController) {
         tabBar.viewControllers = [
-            Utils().setSingleTabVC(vc: HomeViewController(), tabTitle: "Home", tabIcon: UIImage(), tag: 0),
+            Utils().setSingleTabVC(vc: HomeViewController(), tabTitle: "Home", tabIcon: #imageLiteral(resourceName: "house"), tag: 0),
             
         ]
     }
