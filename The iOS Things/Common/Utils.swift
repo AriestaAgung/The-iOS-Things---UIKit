@@ -18,6 +18,10 @@ struct Utils {
     static func randomizeNumber() -> Int {
         return Int.random(in: 1...1000)
     }
+    
+    
+    
+    
     private func setSingleTabVC(vc: UIViewController, tabTitle: String, tabIcon: UIImage, tag: Int) -> UIViewController {
         let navVC = UINavigationController(rootViewController: vc)
         navVC.tabBarItem = UITabBarItem(title: tabTitle, image: tabIcon, tag: tag)
