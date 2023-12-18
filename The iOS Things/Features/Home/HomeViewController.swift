@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
         collection.isPagingEnabled = true
         return collection
     }()
+    private var scrollView: UIScrollView = UIScrollView()
     private var capsules: BulletIndicatorView?
     private let capsulesViewFrame = CGRect(origin: .zero, size: CGSize(width: 16, height: 24))
     
@@ -44,8 +45,20 @@ class HomeViewController: UIViewController {
     
     private func setupUI() {
         self.title = "The iOS Things"
+        setupScrollView()
         setupCollectionView()
         setupCapsuleIndicator()
+    }
+    
+    private func setupScrollView() {
+        self.view.addSubview(self.scrollView)
+        self.scrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        ])
     }
     
     private func setupCollectionView() {
@@ -56,10 +69,11 @@ class HomeViewController: UIViewController {
         headerCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             headerCollectionView.heightAnchor.constraint(equalToConstant: 200),
-            headerCollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            headerCollectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            headerCollectionView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
+            headerCollectionView.topAnchor.constraint(equalTo: self.scrollView.safeAreaLayoutGuide.topAnchor, constant: 0),
+            headerCollectionView.leadingAnchor.constraint(equalTo: self.scrollView.safeAreaLayoutGuide.leadingAnchor),
+            headerCollectionView.trailingAnchor.constraint(equalTo: self.scrollView.safeAreaLayoutGuide.trailingAnchor)
         ])
+        
     }
     
     private func setupCapsuleIndicator() {
@@ -74,7 +88,7 @@ class HomeViewController: UIViewController {
                 capsules.heightAnchor.constraint(equalToConstant: 4),
                 capsules.widthAnchor.constraint(equalToConstant: 100),
                 capsules.topAnchor.constraint(equalTo: headerCollectionView.bottomAnchor, constant: -16),
-                capsules.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor)
+                capsules.centerXAnchor.constraint(equalTo: self.scrollView.safeAreaLayoutGuide.centerXAnchor)
             ])
             capsules.capsules.forEach { capsule in
                 capsule.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addIndicatorGesture)))
@@ -89,6 +103,7 @@ class HomeViewController: UIViewController {
             self.headerCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
         }
     }
+    
     
 }
 
@@ -117,7 +132,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: self.view.frame.size.width, height: 200)
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         capsules?.setActiveCapsule(index: indexPath.row)
     }
+    
+    
 }
