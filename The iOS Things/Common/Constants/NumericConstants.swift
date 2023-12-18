@@ -8,3 +8,4 @@
 import Foundation
 
 let padding = 16.0
+let headerHeights = 200.0

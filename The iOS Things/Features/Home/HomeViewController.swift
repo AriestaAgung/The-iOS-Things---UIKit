@@ -45,6 +45,7 @@ class HomeViewController: UIViewController {
     
     private func setupUI() {
         self.title = "The iOS Things"
+        
         setupScrollView()
         setupCollectionView()
         setupCapsuleIndicator()
@@ -65,13 +66,15 @@ class HomeViewController: UIViewController {
         headerCollectionView.register(UINib(nibName: "HomeHeaderCell", bundle: nil), forCellWithReuseIdentifier: "homeHeaderCell")
         headerCollectionView.delegate = self
         headerCollectionView.dataSource = self
+        headerCollectionView.contentInsetAdjustmentBehavior = .never
+        headerCollectionView.insetsLayoutMarginsFromSafeArea = false
         self.view.addSubview(headerCollectionView)
         headerCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            headerCollectionView.heightAnchor.constraint(equalToConstant: 200),
-            headerCollectionView.topAnchor.constraint(equalTo: self.scrollView.safeAreaLayoutGuide.topAnchor, constant: 0),
-            headerCollectionView.leadingAnchor.constraint(equalTo: self.scrollView.safeAreaLayoutGuide.leadingAnchor),
-            headerCollectionView.trailingAnchor.constraint(equalTo: self.scrollView.safeAreaLayoutGuide.trailingAnchor)
+            headerCollectionView.heightAnchor.constraint(equalToConstant: headerHeights),
+            headerCollectionView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
+            headerCollectionView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
+            headerCollectionView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor)
         ])
         
     }
@@ -80,7 +83,6 @@ class HomeViewController: UIViewController {
         capsules?.removeFromSuperview()
         capsules = BulletIndicatorView(frame: capsulesViewFrame, totalCapsule: presenter.headArticles?.count ?? 4)
         if let capsules {
-            
             self.view.addSubview(capsules)
             capsules.translatesAutoresizingMaskIntoConstraints = false
             capsules.setActiveCapsule(index: 0)
@@ -104,6 +106,11 @@ class HomeViewController: UIViewController {
         }
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        headerCollectionView.reloadData()
+        
+    }
     
 }
 
@@ -129,13 +136,16 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.size.width, height: 200)
+        return CGSize(width: self.view.frame.size.width, height: headerHeights)
     }
+    
     
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         capsules?.setActiveCapsule(index: indexPath.row)
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
 }
