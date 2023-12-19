@@ -13,7 +13,7 @@ extension CALayer {
     func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
 
         let border = CALayer()
-
+        border.name = "borderLayer"
         switch edge {
         case UIRectEdge.top:
             border.frame = CGRect.zero

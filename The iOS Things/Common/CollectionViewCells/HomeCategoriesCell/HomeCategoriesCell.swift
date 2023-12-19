@@ -10,7 +10,19 @@ import UIKit
 class HomeCategoriesCell: UICollectionViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
-    var isActive = false
+    override var isSelected: Bool {
+        didSet {
+            if self.isSelected {
+                nameLabel.layer.addBorder(edge: .bottom, color: .black, thickness: 2)
+            } else {
+                nameLabel.layer.sublayers?.forEach { layer in
+                    if layer.name == "borderLayer" {
+                        layer.removeFromSuperlayer()
+                    }
+                }
+            }
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -23,7 +35,7 @@ class HomeCategoriesCell: UICollectionViewCell {
         default:
             nameLabel.layer.borderWidth = 0
         }
-        isActive = !isActive
+        
     }
 
 }

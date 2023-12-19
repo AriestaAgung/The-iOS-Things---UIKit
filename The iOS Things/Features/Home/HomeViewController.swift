@@ -36,6 +36,7 @@ class HomeViewController: UIViewController {
     private var scrollView: UIScrollView = UIScrollView()
     private var capsules: BulletIndicatorView?
     private let capsulesViewFrame = CGRect(origin: .zero, size: CGSize(width: 16, height: 24))
+    private var categoriesAction: () -> Void = {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +62,7 @@ class HomeViewController: UIViewController {
         setupHeaderCollectionView()
         setupCapsuleIndicator()
         setupCategoriesCollectionView()
+        
     }
     
     private func setupScrollView() {
@@ -75,7 +77,10 @@ class HomeViewController: UIViewController {
     }
     
     private func setupCategoriesCollectionView() {
-        categoriesCollectionView.register(UINib(nibName: "HomeCategoriesCell", bundle: nil), forCellWithReuseIdentifier: "homeCategoriesCell")
+        categoriesCollectionView.register(
+            UINib(nibName: "HomeCategoriesCell", bundle: nil),
+            forCellWithReuseIdentifier: "homeCategoriesCell"
+        )
         categoriesCollectionView.dataSource = self
         categoriesCollectionView.delegate = self
         categoriesCollectionView.allowsMultipleSelection = false
@@ -90,7 +95,10 @@ class HomeViewController: UIViewController {
     }
     
     private func setupHeaderCollectionView() {
-        headerCollectionView.register(UINib(nibName: "HomeHeaderCell", bundle: nil), forCellWithReuseIdentifier: "homeHeaderCell")
+        headerCollectionView.register(
+            UINib(nibName: "HomeHeaderCell", bundle: nil),
+            forCellWithReuseIdentifier: "homeHeaderCell"
+        )
         headerCollectionView.delegate = self
         headerCollectionView.dataSource = self
         headerCollectionView.contentInsetAdjustmentBehavior = .never
@@ -108,7 +116,10 @@ class HomeViewController: UIViewController {
     
     private func setupCapsuleIndicator() {
         capsules?.removeFromSuperview()
-        capsules = BulletIndicatorView(frame: capsulesViewFrame, totalCapsule: presenter.headArticles?.count ?? 4)
+        capsules = BulletIndicatorView(
+            frame: capsulesViewFrame,
+            totalCapsule: presenter.headArticles?.count ?? 4
+        )
         if let capsules {
             self.view.addSubview(capsules)
             capsules.translatesAutoresizingMaskIntoConstraints = false
@@ -171,10 +182,15 @@ extension HomeViewController: UICollectionViewDataSource {
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == categoriesCollectionView {
-            let cell = collectionView.cellForItem(at: indexPath) as! HomeCategoriesCell
-            cell.set(active: !cell.isActive)
+            if let selected = collectionView.indexPathsForSelectedItems {
+                for item in selected {
+                    collectionView.deselectItem(at: item, animated: true)
+                }
+            }
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         }
     }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == headerCollectionView {
             return CGSize(width: self.view.frame.size.width, height: headerHeights)
