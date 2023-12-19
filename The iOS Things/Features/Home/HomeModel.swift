@@ -11,7 +11,7 @@ import UIKit
 enum ArticleCategory: String, CaseIterable {
     case Tutorial
     case TipsTrick = "Tips & Tricks"
-    case none = "Uncategorized"
+    case Uncategorized = "Uncategorized"
     
     func description() -> String {
         switch self {
@@ -19,7 +19,7 @@ enum ArticleCategory: String, CaseIterable {
             "Tutorial"
         case .TipsTrick:
             "Tips & Tricks"
-        case .none:
+        case .Uncategorized:
             "Uncategorized"
         }
     }
@@ -28,9 +28,9 @@ enum ArticleCategory: String, CaseIterable {
         case .Tutorial:
             .green
         case .TipsTrick:
-            .blue
-        case .none:
-            .gray
+            .cyan
+        case .Uncategorized:
+            .lightGray
         }
     }
     
@@ -40,7 +40,7 @@ enum ArticleCategory: String, CaseIterable {
             #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
         case .TipsTrick:
             #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
-        case .none:
+        case .Uncategorized:
             .black
         }
     }

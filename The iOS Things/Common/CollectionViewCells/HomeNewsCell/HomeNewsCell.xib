@@ -59,15 +59,15 @@
                                         <rect key="frame" x="0.0" y="88" width="162" height="32"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DL5-WM-SRK">
-                                                <rect key="frame" x="0.0" y="0.0" width="39" height="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="39.666666666666664" height="32"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rdc-rb-jNh">
-                                                        <rect key="frame" x="4" y="2" width="31" height="28"/>
+                                                        <rect key="frame" x="4.0000000000000018" y="2" width="31.666666666666671" height="28"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="28" id="ZXD-pl-fMb"/>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="162" id="eme-rL-HYT"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
