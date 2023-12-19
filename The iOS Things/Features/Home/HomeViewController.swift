@@ -228,6 +228,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
                 }
             }
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            presenter.provideArticle(for: presenter.articleCategories?[indexPath.row] ?? .Uncategorized, completion: {
+                self.newsTableView.reloadData()
+            })
         }
     }
 

@@ -11,9 +11,11 @@ protocol HomeUseCase {
     func provideHeaderArticleData(completion: @escaping ([HomeArticleModel]) -> Void)
     func provideCategoriesData(completion: @escaping ([ArticleCategory]) -> Void)
     func provideArticle(completion: @escaping ([HomeArticleModel]) -> Void)
+    func provideArticle(for category: ArticleCategory, completion: @escaping () -> Void)
 }
 
 class HomePresenter: HomeUseCase {
+    
     static var shared = HomePresenter()
     var articles: [HomeArticleModel]?
     var articleCategories: [ArticleCategory]?
@@ -38,6 +40,10 @@ class HomePresenter: HomeUseCase {
             self.articles = NewsDummy.data
             completion(self.articles ?? [])
         })
+    }
+    func provideArticle(for category: ArticleCategory, completion: @escaping () -> Void) {
+        self.articles = NewsDummy.data.filter({$0.category == category})
+        completion()
     }
     
 }
