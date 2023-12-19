@@ -33,10 +33,12 @@ class HomeViewController: UIViewController {
         collection.showsVerticalScrollIndicator = false
         return collection
     }()
+    private var newsTableView = UITableView(frame: .zero, style: .plain)
     private var scrollView: UIScrollView = UIScrollView()
     private var capsules: BulletIndicatorView?
     private let capsulesViewFrame = CGRect(origin: .zero, size: CGSize(width: 16, height: 24))
     private var categoriesAction: () -> Void = {}
+    private var scrollContentView = UIView(frame: .zero)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,12 +49,18 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         presenter.provideHeaderArticleData { articles in
             self.headerCollectionView.reloadData()
+            self.setupScrollView()
             self.setupCapsuleIndicator()
         }
         presenter.provideCategoriesData { cat in
             self.categoriesCollectionView.reloadData()
         }
-        presenter.provideArticle { articles in }
+        presenter.provideArticle { articles in
+            print("Article Loaded")
+            self.newsTableView.reloadData()
+            self.setupNewsTableView()
+
+        }
     }
     
     private func setupUI() {
@@ -63,17 +71,48 @@ class HomeViewController: UIViewController {
         setupCapsuleIndicator()
         setupCategoriesCollectionView()
         
+        
     }
     
     private func setupScrollView() {
         self.view.addSubview(self.scrollView)
+        self.scrollView.addSubview(scrollContentView)
         self.scrollView.translatesAutoresizingMaskIntoConstraints = false
+        self.scrollContentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            self.scrollView.heightAnchor.constraint(
+                equalToConstant: scrollContentView.frame.size.height
+            ),
             self.scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
             self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+            self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            
+            scrollContentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            scrollContentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            scrollContentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            scrollContentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            scrollContentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
         ])
+    }
+    private func setupNewsTableView() {
+        newsTableView.register(
+            UINib(nibName: "HomeNewsCell", bundle: nil),
+            forCellReuseIdentifier: "homeNewsCell"
+        )
+        newsTableView.dataSource = self
+        newsTableView.delegate = self
+        newsTableView.isScrollEnabled = false
+        scrollContentView.addSubview(newsTableView)
+        newsTableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            newsTableView.heightAnchor.constraint(equalToConstant: CGFloat(presenter.articles?.count ?? 0) * articleCellHeight),
+            newsTableView.topAnchor.constraint(equalTo: categoriesCollectionView.bottomAnchor),
+            newsTableView.bottomAnchor.constraint(equalTo: self.scrollContentView.bottomAnchor),
+            newsTableView.leadingAnchor.constraint(equalTo: self.scrollContentView.leadingAnchor),
+            newsTableView.trailingAnchor.constraint(equalTo: self.scrollContentView.trailingAnchor)
+        ])
+        
     }
     
     private func setupCategoriesCollectionView() {
@@ -84,13 +123,13 @@ class HomeViewController: UIViewController {
         categoriesCollectionView.dataSource = self
         categoriesCollectionView.delegate = self
         categoriesCollectionView.allowsMultipleSelection = false
-        view.addSubview(categoriesCollectionView)
+        scrollContentView.addSubview(categoriesCollectionView)
         categoriesCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             categoriesCollectionView.heightAnchor.constraint(equalToConstant: 40),
             categoriesCollectionView.topAnchor.constraint(equalTo: headerCollectionView.bottomAnchor, constant: 24),
-            categoriesCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            categoriesCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            categoriesCollectionView.leadingAnchor.constraint(equalTo: self.scrollContentView.leadingAnchor),
+            categoriesCollectionView.trailingAnchor.constraint(equalTo: self.scrollContentView.trailingAnchor),
         ])
     }
     
@@ -103,15 +142,16 @@ class HomeViewController: UIViewController {
         headerCollectionView.dataSource = self
         headerCollectionView.contentInsetAdjustmentBehavior = .never
         headerCollectionView.insetsLayoutMarginsFromSafeArea = false
-        self.view.addSubview(headerCollectionView)
+        scrollContentView.addSubview(headerCollectionView)
         headerCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             headerCollectionView.heightAnchor.constraint(equalToConstant: headerHeights),
-            headerCollectionView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
-            headerCollectionView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
-            headerCollectionView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor)
+            headerCollectionView.topAnchor.constraint(equalTo: self.scrollContentView.topAnchor),
+            headerCollectionView.leadingAnchor.constraint(equalTo: self.scrollContentView.leadingAnchor),
+            headerCollectionView.trailingAnchor.constraint(equalTo: self.scrollContentView.trailingAnchor)
         ])
         
+        headerCollectionView.setContentHuggingPriority(.defaultHigh, for: .vertical)
     }
     
     private func setupCapsuleIndicator() {
@@ -121,14 +161,14 @@ class HomeViewController: UIViewController {
             totalCapsule: presenter.headArticles?.count ?? 4
         )
         if let capsules {
-            self.view.addSubview(capsules)
+            self.scrollContentView.addSubview(capsules)
             capsules.translatesAutoresizingMaskIntoConstraints = false
             capsules.setActiveCapsule(index: 0)
             NSLayoutConstraint.activate([
                 capsules.heightAnchor.constraint(equalToConstant: 4),
                 capsules.widthAnchor.constraint(equalToConstant: 100),
                 capsules.topAnchor.constraint(equalTo: headerCollectionView.bottomAnchor, constant: -16),
-                capsules.centerXAnchor.constraint(equalTo: self.scrollView.safeAreaLayoutGuide.centerXAnchor)
+                capsules.centerXAnchor.constraint(equalTo: self.scrollContentView.safeAreaLayoutGuide.centerXAnchor)
             ])
             capsules.capsules.forEach { capsule in
                 capsule.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addIndicatorGesture)))
@@ -193,7 +233,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == headerCollectionView {
-            return CGSize(width: self.view.frame.size.width, height: headerHeights)
+            return CGSize(width: collectionView.frame.size.width, height: headerHeights)
         }
         
         return collectionView.contentSize
@@ -209,5 +249,35 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
             return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         }
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+}
+
+extension HomeViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        presenter.articles?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "homeNewsCell") as! HomeNewsCell
+        let article = presenter.articles?[indexPath.row]
+        if let url = URL(string: article?.thumbnail ?? "") {
+            cell.thumbnail.kf.setImage(with: url)
+        }
+        cell.titleLabel.text = article?.title
+        cell.authorLabel.text = article?.publisher
+        cell.categoryLabel.text = article?.category?.rawValue
+        cell.categoryLabel.textColor = article?.category?.getFontColor()
+        cell.categoryBackground.backgroundColor = article?.category?.getBGColor()
+        cell.categoryBackground.layer.cornerRadius = 4
+        
+        return cell
+    }
+    
+    
+}
+
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return articleCellHeight
     }
 }

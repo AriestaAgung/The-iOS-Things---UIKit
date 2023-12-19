@@ -14,14 +14,15 @@ class HomeNewsCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var bookmarkIcon: UIImageView!
+    @IBOutlet weak var categoryBackground: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        categoryLabel.backgroundColor = ArticleCategory(rawValue: categoryLabel.text ?? "")?
+        categoryBackground.backgroundColor = ArticleCategory(rawValue: categoryLabel.text ?? "")?
             .getBGColor()
-        categoryLabel.layer.cornerRadius = 8
+        categoryBackground.layer.cornerRadius = 8
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

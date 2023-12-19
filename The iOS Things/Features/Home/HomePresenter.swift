@@ -36,6 +36,7 @@ class HomePresenter: HomeUseCase {
     func provideArticle(completion: @escaping ([HomeArticleModel]) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now()+4, execute: {
             self.articles = NewsDummy.data
+            completion(self.articles ?? [])
         })
     }
     
