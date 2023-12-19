@@ -9,12 +9,15 @@ import Foundation
 import UIKit
 
 enum ArticleCategory: String, CaseIterable {
+    case For_You = "For You"
     case Tutorial
     case TipsTrick = "Tips & Tricks"
     case Uncategorized = "Uncategorized"
     
     func description() -> String {
         switch self {
+        case .For_You:
+            "For You"
         case .Tutorial:
             "Tutorial"
         case .TipsTrick:
@@ -25,6 +28,8 @@ enum ArticleCategory: String, CaseIterable {
     }
     func getBGColor() -> UIColor {
         switch self {
+        case.For_You:
+            .clear
         case .Tutorial:
             .green
         case .TipsTrick:
@@ -36,6 +41,8 @@ enum ArticleCategory: String, CaseIterable {
     
     func getFontColor() -> UIColor {
         switch self {
+        case .For_You:
+            .clear
         case .Tutorial:
             #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
         case .TipsTrick:

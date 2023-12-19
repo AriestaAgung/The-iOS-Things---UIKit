@@ -33,7 +33,7 @@ class HomeViewController: UIViewController {
         collection.showsVerticalScrollIndicator = false
         return collection
     }()
-    private var newsTableView = UITableView(frame: .zero, style: .plain)
+    private lazy var newsTableView = UITableView(frame: .zero, style: .plain)
     private var scrollView: UIScrollView = UIScrollView()
     private var capsules: BulletIndicatorView?
     private let capsulesViewFrame = CGRect(origin: .zero, size: CGSize(width: 16, height: 24))
@@ -56,7 +56,6 @@ class HomeViewController: UIViewController {
             self.categoriesCollectionView.reloadData()
         }
         presenter.provideArticle { articles in
-            print("Article Loaded")
             self.newsTableView.reloadData()
             self.setupNewsTableView()
 
@@ -89,10 +88,11 @@ class HomeViewController: UIViewController {
             self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             
             scrollContentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
-            scrollContentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            scrollContentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: 0),
             scrollContentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
-            scrollContentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            scrollContentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor, constant: 0),
             scrollContentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
+//            scrollContentView.heightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.heightAnchor)
         ])
     }
     private func setupNewsTableView() {
@@ -103,12 +103,15 @@ class HomeViewController: UIViewController {
         newsTableView.dataSource = self
         newsTableView.delegate = self
         newsTableView.isScrollEnabled = false
+        newsTableView.setContentHuggingPriority(.defaultHigh, for: .vertical)
         scrollContentView.addSubview(newsTableView)
+        
         newsTableView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             newsTableView.heightAnchor.constraint(equalToConstant: CGFloat(presenter.articles?.count ?? 0) * articleCellHeight),
             newsTableView.topAnchor.constraint(equalTo: categoriesCollectionView.bottomAnchor),
-            newsTableView.bottomAnchor.constraint(equalTo: self.scrollContentView.bottomAnchor),
+            newsTableView.bottomAnchor.constraint(equalTo: self.scrollContentView.bottomAnchor, constant: 0),
             newsTableView.leadingAnchor.constraint(equalTo: self.scrollContentView.leadingAnchor),
             newsTableView.trailingAnchor.constraint(equalTo: self.scrollContentView.trailingAnchor)
         ])
@@ -187,6 +190,8 @@ class HomeViewController: UIViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         headerCollectionView.reloadData()
+        categoriesCollectionView.reloadData()
+        newsTableView.reloadData()
     }
     
 }
@@ -228,9 +233,14 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
                 }
             }
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-            presenter.provideArticle(for: presenter.articleCategories?[indexPath.row] ?? .Uncategorized, completion: {
+            presenter.provideArticle(for: presenter.articleCategories?[indexPath.row] ?? .For_You, completion: { articles in
                 self.newsTableView.reloadData()
+                let firstArticleFrameHeight = self.newsTableView.frame.size.height
+                self.newsTableView.frame.size.height = CGFloat(Double(articles.count) * articleCellHeight)
+                self.scrollContentView.frame.size.height = self.scrollContentView.frame.size.height - (firstArticleFrameHeight - self.newsTableView.frame.size.height)
+                self.scrollView.contentSize.height = self.scrollContentView.frame.height
             })
+            
         }
     }
 
