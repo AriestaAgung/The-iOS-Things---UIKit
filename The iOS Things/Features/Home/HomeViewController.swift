@@ -24,6 +24,15 @@ class HomeViewController: UIViewController {
         collection.isPagingEnabled = true
         return collection
     }()
+    private var categoriesCollectionView: UICollectionView! = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.showsHorizontalScrollIndicator = false
+        collection.showsVerticalScrollIndicator = false
+        return collection
+    }()
     private var scrollView: UIScrollView = UIScrollView()
     private var capsules: BulletIndicatorView?
     private let capsulesViewFrame = CGRect(origin: .zero, size: CGSize(width: 16, height: 24))
@@ -39,7 +48,9 @@ class HomeViewController: UIViewController {
             self.headerCollectionView.reloadData()
             self.setupCapsuleIndicator()
         }
-        presenter.provideCategoriesData { cat in }
+        presenter.provideCategoriesData { cat in
+            self.categoriesCollectionView.reloadData()
+        }
         presenter.provideArticle { articles in }
     }
     
@@ -47,8 +58,9 @@ class HomeViewController: UIViewController {
         self.title = "The iOS Things"
         
         setupScrollView()
-        setupCollectionView()
+        setupHeaderCollectionView()
         setupCapsuleIndicator()
+        setupCategoriesCollectionView()
     }
     
     private func setupScrollView() {
@@ -62,7 +74,22 @@ class HomeViewController: UIViewController {
         ])
     }
     
-    private func setupCollectionView() {
+    private func setupCategoriesCollectionView() {
+        categoriesCollectionView.register(UINib(nibName: "HomeCategoriesCell", bundle: nil), forCellWithReuseIdentifier: "homeCategoriesCell")
+        categoriesCollectionView.dataSource = self
+        categoriesCollectionView.delegate = self
+        categoriesCollectionView.allowsMultipleSelection = false
+        view.addSubview(categoriesCollectionView)
+        categoriesCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            categoriesCollectionView.heightAnchor.constraint(equalToConstant: 40),
+            categoriesCollectionView.topAnchor.constraint(equalTo: headerCollectionView.bottomAnchor, constant: 24),
+            categoriesCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            categoriesCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+        ])
+    }
+    
+    private func setupHeaderCollectionView() {
         headerCollectionView.register(UINib(nibName: "HomeHeaderCell", bundle: nil), forCellWithReuseIdentifier: "homeHeaderCell")
         headerCollectionView.delegate = self
         headerCollectionView.dataSource = self
@@ -109,42 +136,58 @@ class HomeViewController: UIViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         headerCollectionView.reloadData()
-        
     }
     
 }
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter.headArticles?.count ?? 0
+        if collectionView == headerCollectionView {
+            return presenter.headArticles?.count ?? 0
+        }
+        return presenter.articleCategories?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeHeaderCell", for: indexPath) as! HomeHeaderCell
-        
-        if let url = URL(string: presenter.headArticles?[indexPath.row].thumbnail ?? "") {
-            cell.mainImage.kf.setImage(with: url)
+        if collectionView == headerCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeHeaderCell", for: indexPath) as! HomeHeaderCell
+            
+            if let url = URL(string: presenter.headArticles?[indexPath.row].thumbnail ?? "") {
+                cell.mainImage.kf.setImage(with: url)
+            }
+            
+            cell.titleLabel.text = presenter.headArticles?[indexPath.row].title ?? ""
+            cell.excerptLabel.text = presenter.headArticles?[indexPath.row].excerpt ?? ""
+            return cell
         }
         
-        cell.titleLabel.text = presenter.headArticles?[indexPath.row].title ?? ""
-        cell.excerptLabel.text = presenter.headArticles?[indexPath.row].excerpt ?? ""
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCategoriesCell", for: indexPath) as! HomeCategoriesCell
+        cell.nameLabel.text = presenter.articleCategories?[indexPath.row].rawValue ?? ""
         return cell
     }
-    
     
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.size.width, height: headerHeights)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == categoriesCollectionView {
+            let cell = collectionView.cellForItem(at: indexPath) as! HomeCategoriesCell
+            cell.set(active: !cell.isActive)
+        }
     }
-    
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == headerCollectionView {
+            return CGSize(width: self.view.frame.size.width, height: headerHeights)
+        }
+        
+        return collectionView.contentSize
+    }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        capsules?.setActiveCapsule(index: indexPath.row)
+        if collectionView == headerCollectionView {
+            capsules?.setActiveCapsule(index: indexPath.row)
+        }
     }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }

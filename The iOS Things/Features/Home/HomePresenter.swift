@@ -29,6 +29,7 @@ class HomePresenter: HomeUseCase {
     func provideCategoriesData(completion: @escaping ([ArticleCategory]) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
             self.articleCategories = ArticleCategory.allCases
+            completion(self.articleCategories ?? [])
         })
     }
     
