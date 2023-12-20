@@ -72,7 +72,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="Rdc-rb-jNh" firstAttribute="leading" secondItem="DL5-WM-SRK" secondAttribute="leading" constant="4" id="Av0-eC-xVA"/>
                                                     <constraint firstAttribute="bottom" secondItem="Rdc-rb-jNh" secondAttribute="bottom" constant="2" id="D5I-ue-QbH"/>
@@ -115,6 +115,7 @@
                 <outlet property="authorLabel" destination="v88-LP-3SE" id="9RL-lW-c6x"/>
                 <outlet property="bookmarkIcon" destination="6Jj-8e-5zy" id="EQE-zk-ugS"/>
                 <outlet property="categoryBackground" destination="DL5-WM-SRK" id="022-Dm-ffK"/>
+                <outlet property="categoryBaseView" destination="DL5-WM-SRK" id="tJD-kt-OFG"/>
                 <outlet property="categoryLabel" destination="Rdc-rb-jNh" id="sMH-5f-OUT"/>
                 <outlet property="thumbnail" destination="ErT-JV-xlC" id="VWT-qe-KHn"/>
                 <outlet property="titleLabel" destination="AoO-l6-VI2" id="dnr-T6-axe"/>

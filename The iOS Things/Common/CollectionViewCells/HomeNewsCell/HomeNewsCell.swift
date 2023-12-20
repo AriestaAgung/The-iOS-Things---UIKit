@@ -15,11 +15,12 @@ class HomeNewsCell: UITableViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var bookmarkIcon: UIImageView!
     @IBOutlet weak var categoryBackground: UIView!
+    @IBOutlet weak var categoryBaseView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        self.selectionStyle = .none
         categoryBackground.backgroundColor = ArticleCategory(rawValue: categoryLabel.text ?? "")?
             .getBGColor()
         categoryBackground.layer.cornerRadius = 8

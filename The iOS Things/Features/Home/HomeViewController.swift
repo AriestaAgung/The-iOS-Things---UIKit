@@ -92,7 +92,6 @@ class HomeViewController: UIViewController {
             scrollContentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
             scrollContentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor, constant: 0),
             scrollContentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
-//            scrollContentView.heightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.heightAnchor)
         ])
     }
     private func setupNewsTableView() {
@@ -115,7 +114,7 @@ class HomeViewController: UIViewController {
             newsTableView.leadingAnchor.constraint(equalTo: self.scrollContentView.leadingAnchor),
             newsTableView.trailingAnchor.constraint(equalTo: self.scrollContentView.trailingAnchor)
         ])
-        
+        categoriesCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
     }
     
     private func setupCategoriesCollectionView() {
@@ -134,6 +133,7 @@ class HomeViewController: UIViewController {
             categoriesCollectionView.leadingAnchor.constraint(equalTo: self.scrollContentView.leadingAnchor),
             categoriesCollectionView.trailingAnchor.constraint(equalTo: self.scrollContentView.trailingAnchor),
         ])
+        
     }
     
     private func setupHeaderCollectionView() {
@@ -207,7 +207,6 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == headerCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeHeaderCell", for: indexPath) as! HomeHeaderCell
-            
             if let url = URL(string: presenter.headArticles?[indexPath.row].thumbnail ?? "") {
                 cell.mainImage.kf.setImage(with: url)
             }
@@ -218,6 +217,7 @@ extension HomeViewController: UICollectionViewDataSource {
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeCategoriesCell", for: indexPath) as! HomeCategoriesCell
+        cell.isSelected = false
         cell.nameLabel.text = presenter.articleCategories?[indexPath.row].rawValue ?? ""
         return cell
     }
@@ -240,7 +240,6 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
                 self.scrollContentView.frame.size.height = self.scrollContentView.frame.size.height - (firstArticleFrameHeight - self.newsTableView.frame.size.height)
                 self.scrollView.contentSize.height = self.scrollContentView.frame.height
             })
-            
         }
     }
 
@@ -248,7 +247,6 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         if collectionView == headerCollectionView {
             return CGSize(width: collectionView.frame.size.width, height: headerHeights)
         }
-        
         return collectionView.contentSize
     }
     

@@ -16,9 +16,10 @@ class HomeHeaderCell: UICollectionViewCell {
     private var overlay = UIView()
     override func awakeFromNib() {
         super.awakeFromNib()
-        mainImage.contentMode = .scaleToFill
+        mainImage.contentMode = .scaleAspectFill
         excerptLabel.textColor = .white
         titleLabel.textColor = .white
+        titleLabel.font = .boldSystemFont(ofSize: 24)
         self.mainView.insertSubview(overlay, at: 1)
         overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
         overlay.translatesAutoresizingMaskIntoConstraints = false
