@@ -64,7 +64,7 @@ class HomeViewController: UIViewController {
     
     private func setupUI() {
         self.title = "The iOS Things"
-        
+        self.view.backgroundColor = .white
         setupScrollView()
         setupHeaderCollectionView()
         setupCapsuleIndicator()

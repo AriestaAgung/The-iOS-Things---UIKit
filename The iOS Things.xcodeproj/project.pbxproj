@@ -16,7 +16,6 @@
 		EB44685D2B257C03005FC15D /* The_iOS_ThingsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB44685C2B257C03005FC15D /* The_iOS_ThingsUITestsLaunchTests.swift */; };
 		EB4468742B257F23005FC15D /* RootTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4468722B257F23005FC15D /* RootTabViewController.swift */; };
 		EB4468782B258440005FC15D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4468762B258440005FC15D /* HomeViewController.swift */; };
-		EB4468792B258440005FC15D /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB4468772B258440005FC15D /* HomeViewController.xib */; };
 		EB44687B2B258767005FC15D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB44687A2B258767005FC15D /* Utils.swift */; };
 		EB5499282B30D36500FE1EEA /* HomeCategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5499262B30D36500FE1EEA /* HomeCategoriesCell.swift */; };
 		EB5499292B30D36500FE1EEA /* HomeCategoriesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB5499272B30D36500FE1EEA /* HomeCategoriesCell.xib */; };
@@ -28,7 +27,6 @@
 		EB71F14F2B2FDE7C0012FCBC /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EB71F14E2B2FDE7C0012FCBC /* Kingfisher */; };
 		EB71F1522B2FE6560012FCBC /* NumericConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71F1512B2FE6560012FCBC /* NumericConstants.swift */; };
 		EBADC7DA2B25915E003185C5 /* BulletIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADC7D92B25915E003185C5 /* BulletIndicatorView.swift */; };
-		EBB40FA82B321F5400A1F27F /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBB40FA72B321F5300A1F27F /* View.xib */; };
 		EBBA51FC2B2F58C600EA069A /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA51FB2B2F58C600EA069A /* HomePresenter.swift */; };
 		EBBA51FE2B2F5CE100EA069A /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA51FD2B2F5CE100EA069A /* HomeModel.swift */; };
 		EBBA52012B2F5D3900EA069A /* NewsDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA52002B2F5D3900EA069A /* NewsDummy.swift */; };
@@ -65,7 +63,6 @@
 		EB44685C2B257C03005FC15D /* The_iOS_ThingsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_iOS_ThingsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EB4468722B257F23005FC15D /* RootTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabViewController.swift; sourceTree = "<group>"; };
 		EB4468762B258440005FC15D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		EB4468772B258440005FC15D /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		EB44687A2B258767005FC15D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		EB5499262B30D36500FE1EEA /* HomeCategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCategoriesCell.swift; sourceTree = "<group>"; };
 		EB5499272B30D36500FE1EEA /* HomeCategoriesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCategoriesCell.xib; sourceTree = "<group>"; };
@@ -76,7 +73,6 @@
 		EB71F14A2B2FDB810012FCBC /* HomeHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHeaderCell.xib; sourceTree = "<group>"; };
 		EB71F1512B2FE6560012FCBC /* NumericConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericConstants.swift; sourceTree = "<group>"; };
 		EBADC7D92B25915E003185C5 /* BulletIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletIndicatorView.swift; sourceTree = "<group>"; };
-		EBB40FA72B321F5300A1F27F /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		EBBA51FB2B2F58C600EA069A /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		EBBA51FD2B2F5CE100EA069A /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		EBBA52002B2F5D3900EA069A /* NewsDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDummy.swift; sourceTree = "<group>"; };
@@ -203,8 +199,6 @@
 				EBBA51FD2B2F5CE100EA069A /* HomeModel.swift */,
 				EBBA51FB2B2F58C600EA069A /* HomePresenter.swift */,
 				EB4468762B258440005FC15D /* HomeViewController.swift */,
-				EB4468772B258440005FC15D /* HomeViewController.xib */,
-				EBB40FA72B321F5300A1F27F /* View.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -404,12 +398,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBB40FA82B321F5400A1F27F /* View.xib in Resources */,
 				EB4468462B257C03005FC15D /* LaunchScreen.storyboard in Resources */,
 				EB71F14C2B2FDB810012FCBC /* HomeHeaderCell.xib in Resources */,
 				EB5499292B30D36500FE1EEA /* HomeCategoriesCell.xib in Resources */,
 				EB4468432B257C03005FC15D /* Assets.xcassets in Resources */,
-				EB4468792B258440005FC15D /* HomeViewController.xib in Resources */,
 				EB5499322B31790600FE1EEA /* HomeNewsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
