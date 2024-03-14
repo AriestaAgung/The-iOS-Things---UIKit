@@ -39,7 +39,7 @@ class HomeViewController: UIViewController {
     private let capsulesViewFrame = CGRect(origin: .zero, size: CGSize(width: 16, height: 24))
     private var categoriesAction: () -> Void = {}
     private var scrollContentView = UIView(frame: .zero)
-    
+    private var currentActiveHeader = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -49,7 +49,6 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         presenter.provideHeaderArticleData { articles in
             self.headerCollectionView.reloadData()
-            self.setupScrollView()
             self.setupCapsuleIndicator()
         }
         presenter.provideCategoriesData { cat in
@@ -182,14 +181,33 @@ class HomeViewController: UIViewController {
     @objc private func addIndicatorGesture(_ sender: UITapGestureRecognizer) {
         if let capsule = sender.view as? CapsuleView {
             self.capsules?.setActiveCapsule(index: capsule.tag)
+            self.currentActiveHeader = capsule.tag
             let index = IndexPath(row: capsule.tag, section: 0)
-            self.headerCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+            self.headerCollectionView.scrollToItem(at: index, at: [], animated: true)
         }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        headerCollectionView.collectionViewLayout.invalidateLayout()
+        DispatchQueue.main.async {
+            self.headerCollectionView.reloadData()
+        }
+
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        headerCollectionView.reloadData()
+//        headerCollectionView.collectionViewLayout.invalidateLayout()
+//        headerCollectionView.reloadData()
+//        let index = IndexPath(row: currentActiveHeader, section: 0)
+//        self.headerCollectionView.scrollToItem(at: index, at: [.centeredHorizontally], animated: true)
+//        headerCollectionView.collectionViewLayout.invalidateLayout()
+//        previousTraitCollection?.forwardingTarget(for: #selector(addIndicatorGesture))
         categoriesCollectionView.reloadData()
         newsTableView.reloadData()
     }
@@ -253,6 +271,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if collectionView == headerCollectionView {
             capsules?.setActiveCapsule(index: indexPath.row)
+            self.currentActiveHeader = indexPath.row
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
