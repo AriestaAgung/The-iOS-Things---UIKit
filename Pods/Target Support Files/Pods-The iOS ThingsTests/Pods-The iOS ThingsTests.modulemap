@@ -1,0 +1,6 @@
+framework module Pods_The_iOS_ThingsTests {
+  umbrella header "Pods-The iOS ThingsTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
