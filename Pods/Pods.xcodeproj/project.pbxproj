@@ -396,7 +396,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nperiphery scan per --workspace ../The\\ iOS\\ Things.xcworkspace --targets The\\ iOS\\ Things --schemes The\\ iOS\\ Things --skip-build --format xcode\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nperiphery scan --workspace ../The\\ iOS\\ Things.xcworkspace --targets The\\ iOS\\ Things --schemes The\\ iOS\\ Things --skip-build --format xcode >> ../xcode-analyze.txt\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
